@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from '../../../images/logo-1.png'
 import { Link } from 'react-router-dom';
+import useFirebase from '../../../hooks/useFirebase';
 
 const navigation = [
     { name: 'Home', href: '#', current: true },
@@ -16,6 +17,9 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 const Header = () => {
+    const { user, logOut } = useFirebase();
+
+
     return (
         <Disclosure as="nav" className="bg-pink-400">
             {({ open }) => (
@@ -65,6 +69,18 @@ const Header = () => {
                                     <span className="sr-only">View notifications</span>
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
+                                {
+                                    user?.email ?
+                                        <button type="button" onClick={logOut} className="bg-gray-600 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
+                                            Log Out
+                                        </button>
+                                        : <Link to="/login">
+                                            <button type="button" className="bg-gray-600 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
+                                                Log In
+                                            </button>
+                                        </Link>
+                                }
+
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
