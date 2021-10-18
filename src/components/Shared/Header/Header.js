@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from '../../../images/logo-1.png'
 import { Link } from 'react-router-dom';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 
 const navigation = [
     { name: 'Home', href: '#', current: true },
@@ -17,8 +17,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 const Header = () => {
-    const { user, logOut } = useFirebase();
-
+    const { user, logOut } = useAuth();
 
     return (
         <Disclosure as="nav" className="bg-pink-400">
