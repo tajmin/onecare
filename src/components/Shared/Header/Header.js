@@ -1,10 +1,11 @@
 import React from 'react';
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure, Menu } from '@headlessui/react'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from '../../../images/logo-1.png'
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { HashLink } from 'react-router-hash-link';
 
 const navigation = [
     { name: 'Home', to: '/home', current: true },
@@ -55,7 +56,7 @@ const Header = () => {
                                     <div className="flex space-x-2">
                                         <NavLink to="/home" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Home</NavLink>
 
-                                        <NavLink to="/#services" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Services</NavLink>
+                                        <HashLink to="home/#services" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Services</HashLink>
 
                                         <NavLink to="/about" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">About Us</NavLink>
 
