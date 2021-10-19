@@ -29,9 +29,10 @@ const Login = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        signInUsingEmail(email, password).then(result => {
-            history.push(redirectUrl);
-        })
+        signInUsingEmail(email, password)
+            .then(result => {
+                history.push(redirectUrl);
+            })
         setError(errorMessage);
     }
 

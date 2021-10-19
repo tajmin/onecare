@@ -4,11 +4,12 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const SignUp = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const { signInUsingGoogle, signUpUsingEmail, errorMessage } = useAuth();
+    const { signInUsingGoogle, signUpUsingEmail, errorMessage, updateUserInfo } = useAuth();
     const history = useHistory();
     const redirectUrl = '/home';
 
@@ -16,6 +17,10 @@ const SignUp = () => {
         signInUsingGoogle().then(result => {
             history.push(redirectUrl);
         })
+    }
+
+    const handleNameInput = event => {
+        setName(event.target.value)
     }
 
     const handleEmailInput = event => {
@@ -30,6 +35,10 @@ const SignUp = () => {
         setConfirmPassword(event.target.value)
     }
 
+    const updateUserDetails = () => {
+        updateUserInfo(name);
+    }
+
     const handleSignup = (event) => {
         event.preventDefault();
         if (password.length < 6) {
@@ -40,6 +49,7 @@ const SignUp = () => {
             signUpUsingEmail(email, password)
                 .then(result => {
                     history.push(redirectUrl);
+                    updateUserDetails();
                 })
             setError(errorMessage);
         } else {
@@ -51,6 +61,10 @@ const SignUp = () => {
         <div>
             <div className="bg-red-200 p-16">
                 <form onSubmit={handleSignup}>
+                    <div className="w-48">
+                        <label className="block mb-2" htmlFor="name">Your Name</label>
+                        <input onBlur={handleNameInput} className="w-full" type="text" name="name" required />
+                    </div>
                     <div className="w-48">
                         <label className="block mb-2" htmlFor="email">Your Email</label>
                         <input onBlur={handleEmailInput} className="w-full" type="text" name="email" required />
