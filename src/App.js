@@ -1,6 +1,7 @@
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import About from './components/Pages/About/About';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Pages/Login/Login';
 import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/home">
               <Home></Home>
+            </Route>
+            <Route path="/about">
+              <About></About>
             </Route>
             <PrivateRoute path="/service-info/:serviceID">
               <ServiceInfo></ServiceInfo>

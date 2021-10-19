@@ -1,5 +1,5 @@
 import React from 'react';
-import './PageNotFound.css'
+
 import pic from '../../../images/not-found.gif'
 
 const PageNotFound = () => {
