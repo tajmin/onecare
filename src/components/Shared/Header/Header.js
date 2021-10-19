@@ -3,14 +3,13 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from '../../../images/logo-1.png'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'Home', to: '/home', current: true },
+    { name: 'About', to: '/about', current: false },
+    { name: 'COVID Update', to: '/covid-update', current: false }
 ]
 
 function classNames(...classes) {
@@ -53,32 +52,31 @@ const Header = () => {
 
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <div className="hidden sm:block sm:ml-6">
-                                    <div className="flex space-x-4">
-                                        <Link className=" text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-                                        <a href="#services" className=" text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                                        <Link className=" text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About Us</Link>
-                                        <Link className=" text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</Link>
-                                        <Link className=" text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Book</Link>
+                                    <div className="flex space-x-2">
+                                        <NavLink to="/home" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Home</NavLink>
+
+                                        <NavLink to="/#services" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Services</NavLink>
+
+                                        <NavLink to="/about" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">About Us</NavLink>
+
+                                        <NavLink to="/covid-update" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">COVID Update</NavLink>
+
+                                        {
+                                            user.email && <span className="text-base text-gray-100 pr-2 py-2"> Hey, {user.displayName}</span>
+                                        }
+                                        {
+                                            user.email ?
+                                                <button type="button" onClick={logOut} className="text-base text-gray-300 bg-gray-700 hover:bg-black hover:text-white px-3 py-2 rounded-md" >
+                                                    Log Out
+                                                </button>
+                                                : <Link to="/login">
+                                                    <button type="button" className=" ml-2 text-base text-gray-300 hover:bg-gray-700 bg-black hover:text-white px-3 py-2 rounded-md" >
+                                                        Log In
+                                                    </button>
+                                                </Link>
+                                        }
                                     </div>
                                 </div>
-                                {/* <button
-                                    type="button"
-                                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                                >
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                </button> */}
-                                {
-                                    user?.email ?
-                                        <button type="button" onClick={logOut} className="bg-gray-600 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
-                                            Log Out
-                                        </button>
-                                        : <Link to="/login">
-                                            <button type="button" className="bg-gray-600 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" >
-                                                Log In
-                                            </button>
-                                        </Link>
-                                }
 
                                 {/* Profile  */}
                                 {user.email &&
@@ -102,18 +100,29 @@ const Header = () => {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             {navigation.map((item) => (
-                                <a
+                                <NavLink
                                     key={item.name}
-                                    href={item.href}
+                                    to={item.to}
                                     className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        item.current ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-600 hover:text-white',
                                         'block px-3 py-2 rounded-md text-base font-medium'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}
                                 >
                                     {item.name}
-                                </a>
+                                </NavLink>
                             ))}
+                            {
+                                user.email ?
+                                    <button type="button" onClick={logOut} className="text-gray-300 w-full text-left bg-gray-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium" >
+                                        Log Out
+                                    </button>
+                                    : <Link to="/login">
+                                        <button type="button" className="text-gray-300 w-full text-left bg-gray-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium" >
+                                            Log In
+                                        </button>
+                                    </Link>
+                            }
                         </div>
                     </Disclosure.Panel>
                 </>
