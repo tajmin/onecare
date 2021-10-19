@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const { signInUsingGoogle, signUpUsingEmail, loading } = useAuth();
+    const [error, setError] = useState('');
+    const { signInUsingGoogle, signUpUsingEmail, errorMessage } = useAuth();
     const history = useHistory();
     const redirectUrl = '/home';
 
@@ -29,22 +31,20 @@ const SignUp = () => {
     }
 
     const handleSignup = (event) => {
-        console.log(email, password, confirmPassword);
+        event.preventDefault();
+        if (password.length < 6) {
+            setError('Password must contain at least 6 characters');
+            return;
+        }
         if (password === confirmPassword) {
             signUpUsingEmail(email, password)
                 .then(result => {
                     history.push(redirectUrl);
                 })
+            setError(errorMessage);
+        } else {
+            setError('Password and confirm password do not match')
         }
-        event.preventDefault();
-    }
-
-    if (loading) {
-        return (
-            <div class=" flex justify-center items-center min-h-screen">
-                <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-pink-500"></div>
-            </div>
-        );
     }
 
     return (
@@ -64,7 +64,9 @@ const SignUp = () => {
                         <input onBlur={handleConfirmPasswordInput} className="w-full" type="password" name="confirmPassword" required />
                     </div>
                     <input className="px-4 py-1" type="submit" value="Submit" />
+                    <div className="my-3"><p className="text-red-400">{error}</p></div>
                 </form>
+                <NavLink to="/login">Already Registered? Sign in</NavLink>
             </div>
             <div>
                 <button onClick={handleGoogleLogin} className="px-8 bg-black text-white py-2">Google Sign In</button>
