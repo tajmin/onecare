@@ -9,6 +9,7 @@ import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
 import ServiceInfo from './components/Pages/ServiceInfo/ServiceInfo';
 import SignUp from './components/Pages/SignUp/SignUp';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Footer from './components/Shared/Header/Footer';
 import Header from './components/Shared/Header/Header';
 import AuthProvider from './context/AuthProvider';
 
@@ -44,7 +45,7 @@ function App() {
               <PageNotFound></PageNotFound>
             </Route>
           </Switch>
-
+          <Footer></Footer>
         </BrowserRouter>
       </AuthProvider>
     </div>
