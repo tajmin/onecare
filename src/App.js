@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Pages/Login/Login';
+import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
 import ServiceInfo from './components/Pages/ServiceInfo/ServiceInfo';
 import SignUp from './components/Pages/SignUp/SignUp';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignUp></SignUp>
+            </Route>
+            <Route path="/*">
+              <PageNotFound></PageNotFound>
             </Route>
           </Switch>
         </BrowserRouter>
