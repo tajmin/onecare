@@ -2,6 +2,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import About from './components/Pages/About/About';
+import CovidUpdate from './components/Pages/CovidUpdate/CovidUpdate';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Pages/Login/Login';
 import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
@@ -27,6 +28,9 @@ function App() {
             <Route path="/about">
               <About></About>
             </Route>
+            <Route path="/covid-update">
+              <CovidUpdate></CovidUpdate>
+            </Route>
             <PrivateRoute path="/service-info/:serviceID">
               <ServiceInfo></ServiceInfo>
             </PrivateRoute>
@@ -40,6 +44,7 @@ function App() {
               <PageNotFound></PageNotFound>
             </Route>
           </Switch>
+
         </BrowserRouter>
       </AuthProvider>
     </div>
