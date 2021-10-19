@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Pages/Home/Home/Home';
 import Login from './components/Pages/Login/Login';
 import ServiceInfo from './components/Pages/ServiceInfo/ServiceInfo';
+import SignUp from './components/Pages/SignUp/SignUp';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Header from './components/Shared/Header/Header';
 import AuthProvider from './context/AuthProvider';
@@ -26,6 +27,9 @@ function App() {
             </PrivateRoute>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="/signup">
+              <SignUp></SignUp>
             </Route>
           </Switch>
         </BrowserRouter>
