@@ -3,7 +3,15 @@ import { Redirect, Route } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+
+    if (loading) {
+        return (
+            <div class=" flex justify-center items-center min-h-screen">
+                <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-pink-500"></div>
+            </div>
+        );
+    }
 
     return (
         <Route
