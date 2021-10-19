@@ -56,7 +56,7 @@ const Header = () => {
                                     <div className="flex space-x-2">
                                         <NavLink to="/home" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Home</NavLink>
 
-                                        <HashLink to="home/#services" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Services</HashLink>
+                                        <HashLink to="/home/#services" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">Services</HashLink>
 
                                         <NavLink to="/about" className="text-base text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md">About Us</NavLink>
 
