@@ -44,7 +44,7 @@ const Header = () => {
                                         alt="Workflow"
                                     />
                                     <img
-                                        className="hidden lg:block h-16 w-auto"
+                                        className="hidden lg:block h-20 w-auto"
                                         src={logo}
                                         alt="Workflow"
                                     />
