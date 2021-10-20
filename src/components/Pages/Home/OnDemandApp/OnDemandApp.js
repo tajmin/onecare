@@ -12,7 +12,7 @@ const OnDemandApp = () => {
                     <img src={app} alt="" />
                 </div>
                 <div className="flex-1 xl:px-10">
-                    <h1 className="text-4xl pb-8 font-bold">OneCare, On demand.</h1>
+                    <h1 className="text-4xl pb-8 font-bold">OneCare, on demand.</h1>
                     <p>Get convenient care from home for COVID-19 concerns, cold/flu, UTI, seasonal allergies, minor injuries and more. We offer multiple options for in-person and virtual care, including on-demand video visits. To get started, download the My OneCare app or click the learn more button below.</p>
 
                     <button className="bg-pink-400 px-5 py-2 mt-4 mb-16 text-white">Learn More <ChevronRightIcon className="inline-block w-6 animate-ping"></ChevronRightIcon></button>

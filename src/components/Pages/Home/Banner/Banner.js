@@ -19,7 +19,7 @@ const Banner = () => {
                 <div className="hidden md:block bg-green-500 max-w-lg py-20 text-center">
                     <h1 className="text-white text-5xl font-bold tracking-wider uppercase pb-4">get vaccinated</h1>
                     <h2 className="text-xl text-gray-200 pb-4">Get COVID vaccine at nearest OneCare facility</h2>
-                    <NavLink className="text-xl underline text-blue-600" to="/covid-update">Learn More</NavLink>
+                    <NavLink className="text-xl underline text-blue-600 animate-pulse" to="/covid-update">Learn More</NavLink>
                 </div>
             </div>
         </div>
